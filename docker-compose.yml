@@ -9,7 +9,6 @@ services:
     - ./models:/app/models
     - ./data:/app/data
     - ./actions:/app/actions
-    - ./custom-channels:/app/custom-channels
     command: bash -c "rm -rf models/* && rasa train && rasa run --enable-api --cors \"*\""
     ports:
     - '5006:5005'
@@ -24,7 +23,6 @@ services:
     working_dir: /app
     volumes:
       - ./actions:/app/actions
-      - ./custom-channels:/app/custom-channels
     command: ["rasa","run","actions"]
     ports:
     - '5055:5055'
