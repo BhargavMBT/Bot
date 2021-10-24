@@ -22,7 +22,7 @@ def fetch_a_joke() -> Text:
     if joke_api == "deno":
         joke_response = requests.get(jokes_api_dict[joke_api])
         json_joke = joke_response.json()
-        joke = f"{json_joke['setup']}\n\n{json_joke['punchline']}"
+        joke = f"{json_joke['setup']} ... {json_joke['punchline']}"
     elif joke_api == "chucknorris":
         joke_response = requests.get(jokes_api_dict[joke_api])
         json_joke = joke_response.json()
