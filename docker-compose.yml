@@ -1,0 +1,38 @@
+version: '3.4'
+services:
+  rasa:
+    image: joke-bot:latest
+    build: "./"
+    restart: always
+    working_dir: /app
+    volumes:
+    - ./models:/app/models
+    - ./data:/app/data
+    - ./actions:/app/actions
+    - ./custom-channels:/app/custom-channels
+    command: bash -c "rm -rf models/* && rasa train && rasa run --enable-api --cors \"*\""
+    ports:
+    - '5006:5005'
+    public: true
+    networks:
+    - all
+
+  rasa-actions:
+    build: "./"
+    image: joke-bot:latest
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./actions:/app/actions
+      - ./custom-channels:/app/custom-channels
+    command: ["rasa","run","actions"]
+    ports:
+    - '5055:5055'
+    networks:
+      - all
+
+networks:
+  all:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
