@@ -22,6 +22,6 @@ class ActionTellJoke(Action):
         :return: empty list
         """
         joke = fetch_a_joke()
-        dispatcher.utter_message(text=joke)
+        dispatcher.utter_message(**joke)
         dispatcher.utter_message(template="utter_did_that_help")
         return []

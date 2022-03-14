@@ -1,16 +1,16 @@
 import random
-from typing import Text
+from typing import Dict, Text
 
 import requests
 
 
-def fetch_a_joke() -> Text:
+def fetch_a_joke() -> Dict:
     """
     randomly picks any API to fetch the joke
     checks which API is been picked
     calls that API and fetches the joke
     processes the joke value fetched from API
-    :return: string value of joke
+    :return: dictionary of joke as text and meme image
     """
     jokes_api_dict = {
         "icanhazdadjoke": "https://icanhazdadjoke.com/",
