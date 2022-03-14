@@ -22,13 +22,22 @@ def fetch_a_joke() -> Text:
     if joke_api == "deno":
         joke_response = requests.get(jokes_api_dict[joke_api])
         json_joke = joke_response.json()
-        joke = f"{json_joke['setup']} ... {json_joke['punchline']}"
+        joke = {"text": f"{json_joke['setup']} ... {json_joke['punchline']}"}
     elif joke_api == "chucknorris":
         joke_response = requests.get(jokes_api_dict[joke_api])
         json_joke = joke_response.json()
-        joke = f"{json_joke['value']}"
+        joke = {"text": f"{json_joke['value']}"}
     else:
         joke_response = requests.get(url=jokes_api_dict[joke_api], headers={"Accept": "application/json"})
         json_joke = joke_response.json()
-        joke = f"{json_joke['joke']}"
+        joke = {"text": f"{json_joke['joke']}"}
+
+    joke['image'] = get_meme()
     return joke
+
+
+def get_meme() -> Text:
+    meme_response = requests.get("http://alpha-meme-maker.herokuapp.com/")
+    json_meme = meme_response.json().get("data")
+    random_meme = random.choice(json_meme)
+    return random_meme.get("image")
