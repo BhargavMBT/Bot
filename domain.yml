@@ -33,6 +33,11 @@ responses:
   utter_iamabot:
   - text: "I am a bot, Developed to make people laugh."
 
+  utter_outofscope:
+  - text: Sorry, that is out of my scope, I tell jokes and entertain. ask me to say joke i will.
+  - text: Can you repharse it? I am still learning.
+  - text: I am still in Training, I will learn, understand and respond to ur message in a flow.. In future.
+
 actions:
 - action_tell_joke
 
